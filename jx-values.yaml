@@ -14,16 +14,20 @@ jxRequirements:
     provider: minikube
   environments:
   - key: dev
+    owner: weicong96
+    repository: cicd
   - key: staging
   - key: production
   ingress:
-    domain: ""
+    domain: 172.17.0.3.nip.io
     externalDNS: false
     namespaceSubDomain: -jx.
     tls:
       email: ""
       enabled: false
       production: false
+  pipelineUser:
+    username: weicong96
   repository: bucketrepo
   secretStorage: vault
   vault: {}

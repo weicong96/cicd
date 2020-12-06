@@ -1,0 +1,69 @@
+apiVersion: jenkins.io/v1
+kind: Environment
+metadata:
+  creationTimestamp: null
+  labels:
+    env: dev
+    team: jx
+    gitops.jenkins-x.io/pipeline: 'namespaces'
+  name: dev
+  namespace: jx
+spec:
+  kind: Development
+  label: Development
+  namespace: jx
+  previewGitInfo:
+    user: {}
+  promotionStrategy: Never
+  source:
+    ref: master
+    url: https://github.com/weicong96/cicd.git
+  teamSettings:
+    appsRepository: http://chartmuseum.jenkins-x.io
+    bootRequirements: |
+      autoUpdate:
+        enabled: false
+        schedule: ""
+      cluster:
+        chartRepository: http://bucketrepo.jx.svc.cluster.local/bucketrepo/charts/
+        clusterName: kind
+        devEnvApprovers:
+        - todo
+        environmentGitOwner: todo
+        gitKind: github
+        gitName: github
+        gitServer: https://github.com
+        provider: minikube
+      environments:
+      - key: dev
+        owner: weicong96
+        repository: cicd
+      - key: staging
+      - key: production
+      ingress:
+        domain: 172.17.0.3.nip.io
+        externalDNS: false
+        namespaceSubDomain: -jx.
+        tls:
+          email: ""
+          enabled: false
+          production: false
+      pipelineUser:
+        username: weicong96
+      repository: bucketrepo
+      secretStorage: vault
+      vault: {}
+      webhook: lighthouse
+    defaultScheduler:
+      apiVersion: jenkins.io/v1
+      kind: Scheduler
+      name: jx-meta-pipeline
+    envOrganisation: todo
+    gitServer: https://github.com
+    kubeProvider: minikube
+    pipelineUserEmail: jenkins-x@googlegroups.com
+    pipelineUsername: weicong96
+    promotionEngine: Prow
+    prowConfig: Scheduler
+  webHookEngine: Lighthouse
+status: {}
