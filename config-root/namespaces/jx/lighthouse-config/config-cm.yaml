@@ -41,7 +41,7 @@ data:
         - needs-rebase
         repos:
         - weicong96/cicd
-      target_url: http://dashboard-jx.172.17.0.3.nip.io
+      target_url: http://dashboard-jx.127.0.0.1.nip.io
 kind: ConfigMap
 metadata:
   creationTimestamp: null
